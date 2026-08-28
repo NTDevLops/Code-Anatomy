@@ -5,7 +5,7 @@ about: Suggest an improvement for Code Anatomy
 title: "[FEATURE]: "
 labels: enhancement
 assignees: ""
--------------
+---
 
 # 💡 Feature Request
 
