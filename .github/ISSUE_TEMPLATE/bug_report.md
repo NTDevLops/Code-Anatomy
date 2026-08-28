@@ -5,7 +5,7 @@ about: Report an error, inconsistency, or problem in Code Anatomy
 title: "[BUG]: "
 labels: bug
 assignees: ""
--------------
+---
 
 # 🐛 Bug Report
 
