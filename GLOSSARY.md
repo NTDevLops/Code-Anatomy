@@ -28,6 +28,7 @@ Use this document when you need to understand:
 * [Blood](#blood)
 * [Lung](#lung)
 * [Digestive System](#digestive-system)
+* [Kidney](#kidney)
 * [Skeleton](#skeleton)
 * [Muscle](#muscle)
 * [DNA](#dna)
@@ -385,6 +386,41 @@ input/
 
 ---
 
+# 🫘 Kidney
+
+### Official Name
+
+```text id="kdny01"
+digestive/kidney/
+```
+
+### Responsibility
+
+The **kidney** is the digestive system's final stage: filtering. It removes unnecessary or invalid data after the rest of the pipeline (`mouth` → `teeth` → `stomach` → `liver` → `intestine`) has processed it.
+
+### Typical Use
+
+* Filtering
+* Data cleaning
+* Sanitization
+* Removing unnecessary information
+
+### Traditional Equivalent
+
+```text id="kdny02"
+filter/
+sanitizer/
+validator/
+```
+
+### Core Meaning
+
+> **The kidney filters what the system does not need.**
+
+Note: `kidney/` is documented as part of the Digestive System, not as a separate anatomy system — see `ARCHITECTURE.md` for the full six-stage pipeline and the two-folder default most projects should start with instead.
+
+---
+
 # 🦴 Skeleton
 
 ### Official Name
@@ -579,6 +615,16 @@ The **action system** performs direct actions.
 
 ### Common Subsystems
 
+Default (small/medium projects):
+
+```text id="xq2nv0"
+action/
+├── commands/    # hand + finger
+└── nav/         # leg
+```
+
+Full (large projects, once coarse vs. fine-grained commands genuinely need separating):
+
 ```text id="xq2nvi"
 action/
 ├── hand/
@@ -592,7 +638,7 @@ action/
 
 ---
 
-# 🛡️ Skin
+# 🩹 Skin
 
 ### Official Name
 
@@ -1032,7 +1078,7 @@ Skeleton → Defines the structure of information.
 
 ---
 
-## 🛡️ Skin vs 🫁 Lung
+## 🩹 Skin vs 🫁 Lung
 
 ```text id="vcguxj"
 Skin → Exposes the application.
@@ -1065,13 +1111,14 @@ Action → Performs.
 | 🩸 `blood`      | Data movement and flow                    |
 | 🫁 `lung`       | External communication                    |
 | 🍽️ `digestive` | Input and data processing                 |
+| 🫘 `kidney`     | Filtering (final digestive stage)         |
 | 🦴 `skeleton`   | Models and structural definitions         |
 | 💪 `muscle`     | Heavy work and execution                  |
 | 🧬 `dna`        | Configuration and fundamental behavior    |
 | 🧫 `cells`      | Small building blocks                     |
 | 👁️ `sensory`   | Observation and detection                 |
 | ✋ `action`      | Commands and actions                      |
-| 🛡️ `skin`      | Public-facing interfaces                  |
+| 🩹 `skin`      | Public-facing interfaces                  |
 | 🛡️ `immune`    | Security and protection                   |
 | 🧪 `checkup`    | Testing and health verification           |
 | 🩺 `doctor`     | Diagnostics and maintenance               |

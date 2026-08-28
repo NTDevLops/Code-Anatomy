@@ -1,0 +1,51 @@
+# anatomy.yaml — machine-readable Code Anatomy manifest.
+#
+# This file lets tooling (a future `code-anatomy init` / `code-anatomy lint`,
+# editor plugins, or CI checks) understand a project's Code Anatomy layout
+# without parsing prose docs. It is optional — Code Anatomy works fine
+# without it — but any project that wants linting or scaffolding support
+# should keep one at the repo root.
+#
+# `level` uses the exact names defined in ARCHITECTURE.md's
+# "Recommended Adoption Levels" section:
+#   minimal  → Level 1 — Minimal
+#   standard → Level 2 — Standard
+#   full     → Level 3 — Full Anatomy
+
+version: 1
+level: standard
+
+organs:
+  body:    { path: "body.py",  role: "entry point" }
+  brain:   { path: "brain/",   role: "decisions & logic" }
+  soul:    { path: "soul/",    role: "domain features" }
+  nerve:   { path: "nerve/",   role: "shared utilities" }
+  heart:   { path: "heart/",   role: "central processing" }
+  memory:  { path: "memory/",  role: "storage" }
+  dna:     { path: "dna/",     role: "configuration & fundamental behavior" }
+  skin:    { path: "skin/",    role: "routes / views" }
+  immune:  { path: "immune/",  role: "auth & security" }
+  checkup: { path: "checkup/", role: "tests" }
+
+# Aliases are the traditional-framework names for each organ. They come
+# straight from the "Traditional Equivalent" list already documented for
+# each organ in GLOSSARY.md — this file doesn't invent a new taxonomy,
+# it just makes the existing one machine-readable so a linter can flag,
+# e.g., a `class .*Repository` definition sitting under brain/ instead
+# of memory/.
+aliases:
+  brain: [logic, core, services, business, rules]
+  soul: [modules, features, domains]
+  nerve: [utils, helpers, common, shared]
+  heart: [workers, scheduler, processor, engine]
+  memory: [database, storage, cache, state, repositories, db]
+  dna: [config, settings, environment, constants]
+  skin: [api, routes, controllers, presentation, interface, views]
+  immune: [security, auth, protection]
+  checkup: [tests, testing]
+
+# Organs not present in a project's chosen level are simply omitted here.
+# For a "full" level project, add entries for the organs actually in use
+# (lung, digestive, skeleton, muscle, cells, sensory, action, lab, doctor)
+# the same way — there's no requirement to list every organ that exists
+# in the vocabulary, only the ones this project uses.

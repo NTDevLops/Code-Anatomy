@@ -26,7 +26,7 @@ Please answer the questions below carefully.
 What anatomy name are you proposing?
 
 ```text
-Example: kidney
+Example: gland
 ```
 
 ---
@@ -83,6 +83,7 @@ memory
 blood
 lung
 digestive
+kidney
 skeleton
 muscle
 dna
@@ -209,6 +210,35 @@ If accepted, which documentation may need updates?
 * [ ] `CONVENTIONS.md`
 * [ ] `CONTRIBUTING.md`
 * [ ] `GLOSSARY.md`
+* [ ] `anatomy.yaml` (add the new organ + its aliases)
+* [ ] `CHANGELOG.md` (record the version this ships in)
+
+---
+
+# 🔢 Target Spec Version
+
+Code Anatomy follows semver for the spec itself. A new organ is a **minor**
+version bump (e.g. `v1.1` → `v1.2`), never a patch. Check `CHANGELOG.md` for
+the current version before filling this in.
+
+```text
+Current spec version: (see CHANGELOG.md)
+Proposed version after this change:
+```
+
+---
+
+# ♻️ Overlap With a Collapsed Organ
+
+Some organs were deliberately collapsed into a simpler default (see
+`ARCHITECTURE.md` and `CONVENTIONS.md` for the current defaults vs. full
+expansions of `digestive/`, `action/`, and `heart/`).
+
+```text
+Does this proposal re-introduce, in different words, an organ that was
+previously collapsed or merged? If yes, explain why this case is
+different from the ones the collapse was meant to simplify.
+```
 
 ---
 

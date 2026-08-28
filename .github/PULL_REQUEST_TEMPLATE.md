@@ -67,6 +67,7 @@ memory
 blood
 lung
 digestive
+kidney
 skeleton
 muscle
 dna
@@ -95,6 +96,9 @@ Which documentation files were changed?
 * [ ] `CONVENTIONS.md`
 * [ ] `CONTRIBUTING.md`
 * [ ] `GLOSSARY.md`
+* [ ] `anatomy.yaml`
+* [ ] `CLI_CONCEPT.md`
+* [ ] `CHANGELOG.md`
 * [ ] Other
 
 ---

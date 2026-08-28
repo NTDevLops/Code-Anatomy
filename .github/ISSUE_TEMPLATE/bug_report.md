@@ -35,6 +35,9 @@ Examples:
 * `CONVENTIONS.md`
 * `CONTRIBUTING.md`
 * `GLOSSARY.md`
+* `anatomy.yaml`
+* `CLI_CONCEPT.md`
+* `CHANGELOG.md`
 
 ---
 

@@ -411,7 +411,7 @@ Reserved for:
 * Extraction
 * Filtering pipelines
 
-Example:
+Full example (large projects — see `ARCHITECTURE.md` for when to expand into this):
 
 ```text
 digestive/
@@ -419,7 +419,16 @@ digestive/
 ├── teeth/
 ├── stomach/
 ├── liver/
-└── intestine/
+├── intestine/
+└── kidney/
+```
+
+Default example (small/medium projects):
+
+```text
+digestive/
+├── intake/      # mouth + teeth
+└── process/     # stomach + liver + intestine + kidney
 ```
 
 ---
@@ -530,7 +539,15 @@ Reserved for:
 * Execution
 * Navigation
 
-Example:
+Default (small/medium projects) — flat, no coarse/fine split until it's earned:
+
+```text
+action/
+├── commands/    # hand + finger
+└── nav/         # leg — routing, navigation, transitions
+```
+
+Full example (large projects, once there are enough distinct commands to justify separating coarse actions from fine-grained ones):
 
 ```text
 action/
@@ -541,7 +558,7 @@ action/
 
 ---
 
-## 🛡️ `skin`
+## 🩹 `skin`
 
 Reserved for:
 
@@ -1005,7 +1022,7 @@ The test structure should remain predictable.
 
 A Code Anatomy project should grow gradually.
 
-## Stage 1 — Minimal
+## Level 1 — Minimal
 
 ```text
 body.py
@@ -1017,7 +1034,7 @@ checkup/
 
 ---
 
-## Stage 2 — Standard
+## Level 2 — Standard
 
 ```text
 body.py
@@ -1038,7 +1055,7 @@ checkup/
 
 ---
 
-## Stage 3 — Advanced
+## Level 3 — Full Anatomy
 
 ```text
 body.py
@@ -1109,6 +1126,35 @@ eye/
 ```
 
 Anatomy names must match responsibilities.
+
+`brain/database.py` is a specific, recurring version of this mistake — persistence code slowly migrating into `brain/` because "it's already there." **Fix:** `brain/` should only ever import from `soul/`, `nerve/`, and `memory/` — never contain a SQL query or an HTTP route directly. If a file in `brain/` talks to a database or a network socket, it belongs in `memory/` or `lung/` instead.
+
+---
+
+## ❌ God `soul/`
+
+Every feature dropped straight into `soul/` with no subfolders, long after the project has outgrown that:
+
+```text
+soul/
+├── login.py
+├── signup.py
+├── orders.py
+├── invoices.py
+├── refunds.py
+├── notifications.py
+├── users.py
+└── ... (20+ files, no grouping)
+```
+
+**Fix:** subdivide by feature once `soul/` crosses roughly 15 files:
+
+```text
+soul/
+├── auth/
+├── orders/
+└── notifications/
+```
 
 ---
 
@@ -1188,6 +1234,22 @@ project/
 unless your architecture has a genuinely useful and clearly documented responsibility for them.
 
 > **No responsibility, no anatomy.**
+
+---
+
+## ❌ Organ-per-File
+
+Inventing a brand-new anatomy folder — outside the official vocabulary — for a single file, because the metaphor happened to fit:
+
+```text
+project/
+├── brain/
+├── soul/
+└── whisker/          # one file, invented because "sensing small signals" sounded like a whisker
+    └── ping.py
+```
+
+This is a specific case of the two problems above at once: it invents anatomy that was never proposed (see the RFC process in `.github/ISSUE_TEMPLATE/anatomy_proposal.md`) to hold what Rule 3 already says shouldn't get its own folder. Put it in the closest existing organ, or in `nerve/` if it's genuinely shared support.
 
 ---
 

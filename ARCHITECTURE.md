@@ -48,7 +48,7 @@ The hierarchy should move from:
 
 ---
 
-# 🧍 Level 0 — The Body
+# 🧍 Tier 0 — The Body
 
 The entire project is the **body**.
 
@@ -74,7 +74,7 @@ project/
 
 ---
 
-# 🧠 Level 1 — Core Systems
+# 🧠 Tier 1 — Core Systems
 
 These are the primary systems of a Code Anatomy project.
 
@@ -323,13 +323,13 @@ lung/
 
 # 🍽️ 6. Digestive System
 
-Information processing follows a structured pipeline.
+Information processing follows a structured pipeline: receive, parse, prepare, transform, extract, filter.
 
 ```text
 digestive/
 ```
 
-Official hierarchy:
+Official full hierarchy (six stages, including filtering — see below):
 
 ```text
 digestive/
@@ -337,8 +337,21 @@ digestive/
 ├── teeth/
 ├── stomach/
 ├── liver/
-└── intestine/
+├── intestine/
+└── kidney/
 ```
+
+### 🟢 Default structure (Level 1 / Level 2 projects)
+
+Six folders for one pipeline is more ceremony than most projects need. Unless a project genuinely runs each stage as a separately maintained phase, default to two:
+
+```text
+digestive/
+├── intake/      # mouth + teeth — receiving and parsing raw input
+└── process/     # stomach + liver + intestine + kidney — prepare, transform, extract, filter
+```
+
+Expand `process/` back into its full six-stage form only when a project has enough independent logic at each stage to justify separate files or separate maintainers per stage (for example, a data-engineering service where extract, transform, and filter are separately deployable jobs).
 
 ---
 
@@ -412,7 +425,26 @@ Use for:
 * Extraction
 * Distribution
 
-The flow may look like:
+---
+
+## 🫘 Kidney
+
+```text
+digestive/kidney/
+```
+
+Kidney is the digestive system's final stage: filtering. It is documented here, not as a separate numbered system, so the full pipeline is defined in exactly one place.
+
+Use for:
+
+* Filtering
+* Cleaning
+* Sanitization
+* Removing unnecessary information
+
+For projects where filtering is a major independent responsibility rather than the tail end of an input pipeline (e.g. a dedicated data-sanitization service), `kidney/` may be promoted to the project root instead of nesting under `digestive/`. That is an explicit expansion, not the default — see the Level 1/2/3 examples in this document, none of which include a top-level `kidney/`.
+
+The full flow:
 
 ```text
 Input
@@ -427,51 +459,16 @@ liver/
   ↓
 intestine/
   ↓
+kidney/
+  ↓
 Processed Data
 ```
 
-> **The digestive system receives, processes, transforms, and distributes information.**
+> **The digestive system receives, processes, transforms, extracts, and filters information.**
 
 ---
 
-# 🫘 7. Filtering System
-
-Filtering belongs to the body's processing systems.
-
-Official location:
-
-```text
-digestive/kidney/
-```
-
-Or, for projects where filtering is a major independent responsibility:
-
-```text
-kidney/
-```
-
-Recommended structure:
-
-```text
-digestive/
-├── kidney/
-│   ├── filter.py
-│   ├── clean.py
-│   └── sanitize.py
-```
-
-### Responsibility
-
-* Filtering
-* Cleaning
-* Sanitization
-* Removing unnecessary information
-
-> **The kidney filters.**
-
----
-
-# 🦴 8. Skeletal System
+# 🦴 7. Skeletal System
 
 The skeletal system provides structural support.
 
@@ -521,7 +518,7 @@ Use for:
 
 ---
 
-# 💪 9. Muscular System
+# 💪 8. Muscular System
 
 The muscular system performs work.
 
@@ -556,7 +553,7 @@ Use for:
 
 ---
 
-# 🧬 10. Genetic System
+# 🧬 9. Genetic System
 
 The genetic system defines instructions and behavior.
 
@@ -591,7 +588,7 @@ Use for:
 
 ---
 
-# 🧫 11. Cellular System
+# 🧫 10. Cellular System
 
 The cellular system contains small building blocks.
 
@@ -640,7 +637,7 @@ Use for:
 
 ---
 
-# 🧠 12. Memory System
+# 🧠 11. Memory System
 
 ```text
 memory/
@@ -668,7 +665,7 @@ memory/
 
 ---
 
-# 👁️ 13. Sensory System
+# 👁️ 12. Sensory System
 
 Sensory organs should be grouped together.
 
@@ -733,7 +730,7 @@ Use for:
 
 ---
 
-# ✋ 14. Action and Movement System
+# ✋ 13. Action and Movement System
 
 Actions should be grouped together.
 
@@ -741,7 +738,17 @@ Actions should be grouped together.
 action/
 ```
 
-Official structure:
+### 🟢 Default structure (Level 1 / Level 2 projects)
+
+Splitting coarse actions from fine-grained ones is a judgment call with no clear test until a project has enough distinct commands to need it. Default to a flat split by concern instead:
+
+```text
+action/
+├── commands/    # hand + finger — all direct actions, coarse or fine
+└── nav/         # leg — navigation, routing, transitions
+```
+
+### 🔴 Full structure (expand once `commands/` earns the split)
 
 ```text
 action/
@@ -796,7 +803,7 @@ Use for:
 
 ---
 
-# 🛡️ 15. Immune System
+# 🛡️ 14. Immune System
 
 Security belongs to the immune system.
 
@@ -831,7 +838,7 @@ Use for:
 
 ---
 
-# 🛡️ 16. External System
+# 🩹 15. External System
 
 The external-facing layer is the skin.
 
@@ -861,7 +868,7 @@ skin/
 
 ---
 
-# 🩺 17. Development and Maintenance System
+# 🩺 16. Development and Maintenance System
 
 Development support should be clearly separated from application logic.
 

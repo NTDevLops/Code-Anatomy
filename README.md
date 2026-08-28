@@ -37,6 +37,70 @@ The goal is to create a naming system that is:
 
 ---
 
+# 📖 Documentation Map
+
+This README covers the philosophy and a worked example. For everything else:
+
+| File | What it covers |
+|---|---|
+| `ARCHITECTURE.md` | The official hierarchy — systems, organs, components, and the Level 1/2/3 adoption levels |
+| `GUIDE.md` | A decision tree, a Rosetta Stone mapping to MVC/Clean architecture, and Python/JS/TS/Go examples |
+| `CONVENTIONS.md` | Official naming, folder-creation, dependency, and anti-pattern rules |
+| `GLOSSARY.md` | The full vocabulary — every organ's responsibility, typical use, and traditional equivalent |
+| `CONTRIBUTING.md` | How to propose changes or new anatomy |
+| `CHANGELOG.md` | What changed between spec versions |
+| `anatomy.yaml` | A machine-readable manifest of a project's Code Anatomy layout |
+| `CLI_CONCEPT.md` | A design sketch for `code-anatomy init`/`lint` tooling |
+
+---
+
+# 👀 See It in Practice
+
+A small e-commerce API at the **Standard** adoption level (see `ARCHITECTURE.md`):
+
+```text
+shopcore/
+├── body.py                      # boots the app, wires dependencies
+│
+├── brain/
+│   ├── checkout_workflow.py     # orchestrates checkout steps
+│   └── pricing_rules.py         # discount/tax logic
+│
+├── soul/
+│   ├── orders/
+│   ├── inventory/
+│   └── customers/
+│
+├── nerve/
+│   ├── logger.py
+│   └── validator.py
+│
+├── heart/
+│   └── order_worker.py          # background job: process paid orders
+│
+├── memory/
+│   ├── postgres/
+│   └── redis_cache/
+│
+├── skin/
+│   ├── routes/orders.py
+│   └── routes/customers.py
+│
+├── immune/
+│   └── jwt_auth.py
+│
+├── dna/
+│   └── settings.py
+│
+└── checkup/
+    ├── unit/
+    └── integration/
+```
+
+Note there's no `lung/` here — the **Standard** level doesn't include it. If this project later adds a Stripe integration, that's the signal to expand into `lung/` rather than bolting an API client onto `brain/` or `memory/`.
+
+---
+
 # 🫀 The Core Principle
 
 > **Every piece of code should have a role.**
@@ -307,6 +371,8 @@ vessel/
 
 > **The vessels carry information between systems.**
 
+`blood/` alone is the default for most projects — `vessel/` is an expansion, worth adding only once there are enough distinct data channels to name separately (see `ARCHITECTURE.md` → Circulatory System).
+
 ---
 
 # 🫁 Respiratory System
@@ -360,7 +426,7 @@ airway/
 
 # 🍽️ Digestive System
 
-The digestive system receives, breaks down, processes, and transforms incoming information.
+The digestive system receives, breaks down, processes, transforms, extracts, and filters incoming information.
 
 ```text
 Raw Input
@@ -375,8 +441,20 @@ liver/
     ↓
 intestine/
     ↓
+kidney/
+    ↓
 Processed Information
 ```
+
+> **Default for most projects:** six folders for one pipeline is more than most small or medium projects need. Unless each stage is independently maintained, collapse this into two folders instead:
+>
+> ```text
+> digestive/
+> ├── intake/      # mouth + teeth
+> └── process/     # stomach + liver + intestine + kidney
+> ```
+>
+> Expand back into the full six-stage form only when a project's growth actually justifies it — see `ARCHITECTURE.md`.
 
 ---
 
@@ -490,11 +568,9 @@ intestine/
 
 ---
 
-# 🫘 Filtering System
-
----
-
 ## 🫘 `kidney/`
+
+The digestive system's final stage: filtering.
 
 The kidneys filter and remove unnecessary material.
 
@@ -926,7 +1002,7 @@ leg/
 
 ---
 
-## 🛡️ `skin/`
+## 🩹 `skin/`
 
 The skin is the outer layer of the system.
 
@@ -1317,11 +1393,11 @@ project/
 | Code Anatomy    | Traditional Equivalent       | Purpose                 |
 | --------------- | ---------------------------- | ----------------------- |
 | 🧍 `body.py`    | `main.py`, `app.py`          | Application entry point |
-| 🧠 `brain/`     | `logic/`, `core/`            | Decisions and logic     |
+| 🧠 `brain/`     | `logic/`, `services/`        | Decisions and logic     |
 | 🧬 `soul/`      | `modules/`, `features/`      | Major features          |
 | ⚡ `nerve/`      | `utils/`, `helpers/`         | Shared support          |
 | ⚡ `reflex/`     | `handlers/`                  | Automatic reactions     |
-| ❤️ `heart/`     | `services/`, `engine/`       | Central processing      |
+| ❤️ `heart/`     | `workers/`, `scheduler/`     | Central processing      |
 | 🩸 `blood/`     | `pipeline/`, `stream/`       | Data movement           |
 | 🩸 `vessel/`    | `channels/`, `connectors/`   | Internal communication  |
 | 🫁 `lung/`      | `clients/`, `network/`       | External communication  |
@@ -1349,7 +1425,7 @@ project/
 | ✋ `hand/`       | `actions/`, `commands/`      | Actions                 |
 | ☝️ `finger/`    | `commands/`                  | Small actions           |
 | 🦵 `leg/`       | `routing/`, `navigation/`    | Movement                |
-| 🛡️ `skin/`     | `interface/`, `views/`       | External layer          |
+| 🩹 `skin/`     | `interface/`, `views/`       | External layer          |
 | 🛡️ `immune/`   | `security/`                  | General protection      |
 | 🧪 `antibody/`  | `security_rules/`            | Specific protection     |
 | 🔬 `lab/`       | `experiments/`               | Experiments             |
@@ -1601,6 +1677,7 @@ soul/
 nerve/
 heart/
 memory/
+dna/
 skin/
 immune/
 checkup/

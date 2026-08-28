@@ -7,9 +7,11 @@ This guide helps developers apply the **Code Anatomy** convention to real projec
 It includes:
 
 * 🧭 The Code Anatomy Decision Tree
+* 🗺️ A Rosetta Stone mapping to architectures you already know
 * 🐍 Python examples
 * 🟨 JavaScript examples
 * 🔷 TypeScript examples
+* 🐹 Go examples
 * 📁 Real project structures
 * 🧠 Practical naming guidance
 
@@ -18,6 +20,23 @@ The main rule is simple:
 > **Organize code by responsibility.**
 
 The human-body metaphor should help developers understand where code belongs.
+
+---
+
+# 🗺️ Rosetta Stone — Mapping From Architectures You Already Know
+
+If you already think in MVC or Clean/Hexagonal architecture, this table places your first file in under a minute — read the decision tree afterward for anything it doesn't cover.
+
+| Code Anatomy | MVC | Clean / Hexagonal | Typical Node/Django name |
+|---|---|---|---|
+| `body.py` | — | Composition root | `main.py` / `index.js` |
+| `brain/` | Controller | Use cases / Application layer | `services/` |
+| `soul/` | Model (domain) | Entities / Domain layer | `domain/` |
+| `skin/` | View / Route | Interface adapters (in) | `routes/`, `controllers/` |
+| `lung/` | — | Interface adapters (out) | `clients/`, `integrations/` |
+| `memory/` | Model (persistence) | Infrastructure | `repositories/`, `db/` |
+| `immune/` | Middleware | Cross-cutting concern | `middleware/auth/` |
+| `checkup/` | — | — | `tests/` |
 
 ---
 
@@ -646,6 +665,46 @@ Therefore:
 
 ---
 
+# 🐹 Go Example
+
+A Go project using the same Code Anatomy structure — the convention doesn't change across languages, only the file extension does.
+
+```text
+my-project/
+│
+├── body.go
+│
+├── brain/
+│   ├── decision.go
+│   └── workflow.go
+│
+├── soul/
+│   ├── authentication/
+│   │   └── service.go
+│   │
+│   └── users/
+│       └── service.go
+│
+├── nerve/
+│   ├── logger.go
+│   └── validator.go
+│
+├── skin/
+│   └── routes/
+│       └── users.go
+│
+├── memory/
+│   └── postgres.go
+│
+├── immune/
+│   └── auth.go
+│
+└── checkup/
+    └── system_test.go
+```
+
+---
+
 # 🌐 Web Application Example
 
 A web application using Code Anatomy.
@@ -678,10 +737,8 @@ web-app/
 │   └── websocket/
 │
 ├── digestive/
-│   ├── mouth/
-│   ├── teeth/
-│   ├── stomach/
-│   └── liver/
+│   ├── intake/      # mouth + teeth
+│   └── process/     # stomach + liver + intestine + kidney
 │
 ├── skeleton/
 │   ├── models/
@@ -916,7 +973,7 @@ reflex → reacts
 
 ---
 
-## 🛡️ Skin vs 🫁 Lung
+## 🩹 Skin vs 🫁 Lung
 
 ### Skin
 
