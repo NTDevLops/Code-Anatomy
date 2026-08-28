@@ -1,0 +1,23 @@
+blank_issues_enabled: false
+
+contact_links:
+
+* name: 📖 Read the Documentation
+  url: https://github.com/NTDevLops/Code-Anatomy#readme
+  about: Read the Code Anatomy philosophy and documentation before opening an issue.
+
+* name: 🧭 Read the Code Anatomy Guide
+  url: https://github.com/NTDevLops/Code-Anatomy/blob/main/GUIDE.md
+  about: Use the guide to understand where code belongs in the Code Anatomy system.
+
+* name: 📏 Read the Conventions
+  url: https://github.com/NTDevLops/Code-Anatomy/blob/main/CONVENTIONS.md
+  about: Check the official naming, organization, and anatomy rules.
+
+* name: 🧬 Check the Glossary
+  url: https://github.com/NTDevLops/Code-Anatomy/blob/main/GLOSSARY.md
+  about: Understand the official meaning of Code Anatomy terminology.
+
+* name: 🤝 Contribution Guidelines
+  url: https://github.com/NTDevLops/Code-Anatomy/blob/main/CONTRIBUTING.md
+  about: Read the contribution rules before proposing changes or new anatomy.
