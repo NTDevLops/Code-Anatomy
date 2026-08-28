@@ -5,7 +5,7 @@ about: Propose a new anatomy concept for Code Anatomy
 title: "[ANATOMY]: "
 labels: anatomy proposal
 assignees: ""
--------------
+---
 
 # 🧬 Anatomy Proposal
 
